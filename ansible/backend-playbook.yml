@@ -1,0 +1,31 @@
+---
+- name: Configure Backend Servers
+  hosts: backends
+  become: yes
+
+  tasks:
+    - name: Install Node.js
+      yum:
+        name: nodejs
+        state: present
+        enablerepo: epel
+
+    - name: Install Git
+      yum:
+        name: git
+        state: present
+
+    - name: Clone the backend app
+      git:
+        repo: https://github.com/YHKH/mern-blog-backend.git
+        dest: /home/ec2-user/backend
+        version: main
+
+    - name: Install backend dependencies
+      npm:
+        path: /home/ec2-user/backend
+        state: present
+
+    - name: Start the backend app
+      shell: |
+        nohup node /home/ec2-user/backend/index.js > output.log 2>&1 &
