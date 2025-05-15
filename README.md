@@ -29,6 +29,8 @@ This project demonstrates the deployment of a simple MERN (MongoDB, Express, Rea
                          S3 Bucket for Media Uploads via IAM User
 
 ---
+![Architecture Diagram](./images/architecture-diagram.png)
+---
 
 ## Technologies Used
 
@@ -76,6 +78,11 @@ Uncomment the S3 frontend block in Main.tf to create:
     terraform init
 terraform apply
 
+Screenshots:
+
+- ![Frontend S3 Console](./images/frontend (2).png)
+- ![Frontend index.html uploaded](./images/frontend-index-html.png)
+
 3. Backend Deployment (EC2 Instances)
 
 In Backend.tf, Terraform will:
@@ -85,6 +92,10 @@ In Backend.tf, Terraform will:
 
     terraform apply -target=aws_instance.backend_1
 terraform apply -target=aws_instance.backend_2
+
+Screenshot:
+
+- ![EC2 Console](./images/EC2Console.png)
 
 4. IAM Setup for Media Uploads
 
@@ -96,6 +107,11 @@ The IAM.tf file:
 terraform apply -target=aws_iam_access_key.media_user_key
 
 You will get AccessKey and SecretKey for use in the frontend upload functionality.
+
+Screenshots:
+
+- ![IAM User](./images/IAM-User.png)
+- ![Policies](./images/Policies.png)
 
 5. Backend Configuration with Ansible
 
@@ -120,8 +136,20 @@ This will:
 	•	Add HTTPS and domain configuration via Route53 and ACM
 	•	Add health checks and monitoring
 
+    ## Notes
+
+- *MongoDB:*  
+  This project assumes an external MongoDB service such as *MongoDB Atlas*. The backend app connects to MongoDB remotely. MongoDB installation or hosting is outside the scope of this deployment.
+
+- The backend app runs with nohup, not managed by PM2 or systemd.
+- Future improvements include adding Load Balancer, Auto Scaling Group, HTTPS with ACM, and process management.
+
+## Terraform Execution Screenshots
+
+- ![Terraform init](./images/Terraform init.png)
+- ![Terraform apply](./images/Terraform apply.png)
+
+
     Author
-
 Yahya Almalki.
-
 GitHub: @YHKH
