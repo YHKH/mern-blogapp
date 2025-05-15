@@ -149,6 +149,12 @@ This will:
 - ![Terraform init](./images/Terraform init.png)
 - ![Terraform apply](./images/Terraform apply.png)
 
+## Live Demo
+
+You can view the live version of the website here:
+
+[Visit the Website](http://yahya-blogapp-frontend-new.s3-website.eu-north-1.amazonaws.com/)
+
 
     Author
 Yahya Almalki.
